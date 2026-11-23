@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pantun untuk Rana ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg,#180b2e,#54245f,#a34c79);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 430px;
+  text-align: center;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 25px;
+  padding: 30px 22px;
+  box-shadow: 0 10px 40px #0005;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: #ffd5e8;
+  font-size: 27px;
+}
+
+.subtitle {
+  color: #f5c9df;
+  font-style: italic;
+}
+
+.heart {
+  font-size: 48px;
+  animation: beat 1.3s infinite;
+  margin: 15px;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.2); }
+}
+
+.pantun {
+  min-height: 185px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 20px 12px;
+  margin: 25px 0;
+  line-height: 1.8;
+  font-size: 17px;
+  transition: 0.4s;
+}
+
+.pantun p {
+  margin: 4px 0;
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 13px 23px;
+  margin: 7px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.next {
+  background: #ffb4d2;
+  color: #521b43;
+}
+
+.back {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+.footer {
+  font-size: 12px;
+  color: #f6d5e5;
+  margin-top: 25px;
+}
+
+.floating {
+  position: fixed;
+  bottom: -30px;
+  animation: floatUp 7s linear infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% { opacity: 0.7; }
+  100% {
+    transform: translateY(-110vh) rotate(40deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="heart">💌</div>
+
+  <h1>Pantun untuk Rana</h1>
+
+  <p class="subtitle">
+    Tentang pesan yang tak kunjung datang...
+  </p>
+
+  <div class="pantun" id="pantun">
+    <p>Burung merpati terbang ke awan,</p>
+    <p>Hinggap sebentar di atas dahan.</p>
+    <p>Sudah lama tak ada kabar Rana,</p>
+    <p>WA-ku sunyi menunggu sapaan.</p>
+  </div>
+
+  <button class="back" onclick="previous()">◀ Sebelumnya</button>
+  <button class="next" onclick="next()">Pantun berikutnya ❤️</button>
+
+  <p id="number">Pantun 1 dari 8</p>
+
+  <div class="footer">
+    Dibuat dengan sedikit rasa rindu ❤️<br>
+    By DERiiLNAY
+  </div>
+
+</div>
+
+<script>
+const pantun = [
+[
+"Burung merpati terbang ke awan,",
+"Hinggap sebentar di atas dahan.",
+"Sudah lama tak ada kabar Rana,",
+"WA-ku sunyi menunggu sapaan."
+],
+[
+"Pergi ke pasar membeli jamu,",
+"Pulangnya singgah membeli ketan.",
+"Bukan tak ingin mengganggu waktumu,",
+"Hanya rindu obrolan yang dulu berkesan."
+],
+[
+"Bunga melati tumbuh di taman,",
+"Harum semerbak di pagi hari.",
+"Dulu WA ramai dengan obrolan,",
+"Sekarang hanya kubuka sendiri."
+],
+[
+"Naik sepeda menuju kota,",
+"Melihat senja berwarna jingga.",
+"Rana mungkin sedang sibuk di sana,",
+"Aku di sini tak ingin menduga."
+],
+[
+"Ikan berenang di dalam kali,",
+"Air mengalir menuju muara.",
+"Notifikasi kutunggu berkali-kali,",
+"Ternyata belum ada pesan dari Rana."
+],
+[
+"Langit malam bertabur bintang,",
+"Bulan tersenyum di balik awan.",
+"Tak perlu merasa harus datang,",
+"Jika memang tak ingin berkabaran."
+],
+[
+"Buah mangga rasanya manis,",
+"Dibawa pulang di dalam peti.",
+"Kalau memang komunikasi telah habis,",
+"Semoga Rana tetap baik hati."
+],
+[
+"Pergi berjalan menikmati senja,",
+"Angin berhembus menyentuh wajah.",
+"Terima kasih untuk cerita yang ada,",
+"Meski kini WA tak lagi menyapa."
+]
+];
+
+let index = 0;
+
+function show() {
+  document.getElementById("pantun").innerHTML =
+    pantun[index].map(x => `<p>${x}</p>`).join("");
+
+  document.getElementById("number").textContent =
+    `Pantun ${index + 1} dari ${pantun.length}`;
+}
+
+function next() {
+  index = (index + 1) % pantun.length;
+  show();
+}
+
+function previous() {
+  index = (index - 1 + pantun.length) % pantun.length;
+  show();
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "floating";
+  heart.textContent = ["❤️","💕","💗","💌"][Math.floor(Math.random()*4)];
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.fontSize = (15 + Math.random()*20) + "px";
+  heart.style.animationDuration = (5 + Math.random()*5) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 10000);
+}
+
+setInterval(createHeart, 800);
+</script>
+
+</body>
+</html>
