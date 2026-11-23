@@ -163,7 +163,6 @@ button {
     <button class="next">BUKA PESAN ❤️</button>
     <p style="font-size:12px;">Sentuh layar untuk membuka</p>
   </div>
-</div>
 
 <!-- MUSIK RANA -->
 <audio id="laguRana" loop>
@@ -295,12 +294,9 @@ function openMessage() {
 
   audio.volume = 0.7;
 
-  audio.play().then(() => {
-    document.getElementById("musicBtn").textContent =
-      "⏸ Jeda Lagu ❤️";
-  }).catch(() => {
-    alert("Musik belum berhasil diputar. Silakan tekan tombol putar.");
-  });
+ audio.play().catch(() => {
+  alert("Musik gagal diputar. Periksa file rana.mp3.");
+}); 
 
   document.getElementById("opening").style.display = "none";
 }
