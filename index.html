@@ -280,6 +280,27 @@ function createHeart() {
 }
 
 setInterval(createHeart, 800);
+  
+let opened = false;
+
+function openMessage() {
+  if (opened) return;
+  opened = true;
+
+  const audio = document.getElementById("laguRana");
+
+  audio.volume = 0.7;
+
+  audio.play().then(() => {
+    document.getElementById("musicBtn").textContent =
+      "⏸ Jeda Lagu ❤️";
+  }).catch(() => {
+    alert("Musik belum berhasil diputar. Silakan tekan tombol putar.");
+  });
+
+  document.getElementById("opening").style.display = "none";
+}
+
 </script>
 
 </body>
